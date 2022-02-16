@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { GameCover } from '../game-cover';
@@ -11,14 +11,14 @@ import { setCurrentGame } from '../../redux/games/reducer';
 import './game-card.css';
 
 export const GameCard = ({ game }) => {
-  const history = useHistory(); // это было в старой версии react-router, так что в финальном видео всё равно переделаю
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const PATH = `/app/${game.title.toLowerCase()}`;
 
   const handleClick = () => {
     dispatch(setCurrentGame(game));
-    history.push(PATH);
+    navigate(PATH);
   };
 
   return (

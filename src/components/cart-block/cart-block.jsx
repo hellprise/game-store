@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { MdOutlineAddShoppingCart } from 'react-icons/md';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import { calcTotalPrice } from '../../utils';
 
@@ -14,7 +14,7 @@ export const CartBlock = () => {
   // MdShoppingCart - это название второй иконки. можно реализовать, если будет желание, смену иконок, в зависимости от того, есть ли что-то в корзине. если она не пуста, то юзать эту
   const [isVisible, setIsVisible] = useState(false);
   const items = useSelector((state) => state.cart.itemsInCart);
-  const history = useHistory();
+  const navigate = useNavigate();
   const totalPrice = calcTotalPrice(items);
 
   const isVisibleCart = () => {
@@ -22,8 +22,8 @@ export const CartBlock = () => {
   };
 
   const handleClick = useCallback(() => {
-    history.push('/order');
-  }, [history]);
+    navigate('/order');
+  }, [navigate]);
 
   return (
     <div className="cart-block">
