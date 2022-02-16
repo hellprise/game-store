@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import { store } from './redux';
@@ -15,17 +15,11 @@ function App() {
       <Router>
         <div className="App">
           <Header />
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/app/:title">
-              <GamePage />
-            </Route>
-            <Route exact path="/order">
-              <OrderPage />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/app/:title" element={<GamePage />} />
+            <Route path="/order" element={<OrderPage />} />
+          </Routes>
         </div>
       </Router>
     </Provider>
